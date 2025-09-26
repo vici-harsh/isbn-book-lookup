@@ -27,17 +27,23 @@ improve performance. The interface is styled with custom CSS served via Vite.
 git clone https://github.com/vici-harsh/isbn-book-lookup.git
 cd isbn-book-lookup
 ```
-2. **Install PHP Dependencies** :
+2. **Set Up XAMPP** :
+```   
+● Download XAMPP from https://www.apachefriends.org/ for your operating system (Windows, macOS, or Linux).
+● Install XAMPP, ensuring PHP (>= 8.1) and MySQL are selected.
+● Start Apache and MySQL via the XAMPP Control Panel.
+```
+3. **Install PHP Dependencies** :
 ```
 composer install
 ```
-3. **Install Node.js Dependencies** :
+4. **Install Node.js Dependencies** :
 ```
 npm install
 ```
 
 
-4. Update .env with your database details:
+5. Update .env with your database details:
 ```
 APP_URL=http://127.0.0.1: 8000
 DB_CONNECTION=mysql
@@ -49,7 +55,7 @@ DB_PASSWORD=your_password
 CACHE_STORE=database
 ```
 
-5. **Set Up Database** :
+6. **Set Up Database** :
 ● Create the database (e.g., via MySQL CLI: CREATE DATABASE
 your_database;).
 ● Run migrations to create the cache table for caching:
@@ -57,19 +63,19 @@ your_database;).
 php artisan cache:table
 php artisan migrate
 ```
-6. **Compile Assets** :
+7. **Compile Assets** :
 ```
 npm run dev
 ```
-7. **Start the Laravel Server** :
+8. **Start the Laravel Server** :
 ```
 php artisan serve
 ```
-8. **Run Vite for Development** :
+9. **Run Vite for Development** :
 ```
 npm run dev
 ```
-9. **Access the App** :
+10. **Access the App** :
 ● Open [http://127.0.0.1:8000](http://127.0.0.1:8000) in your browser.
 ● Enter an ISBN (e.g., 9780141439518) and click "Fetch Book Details".
 
