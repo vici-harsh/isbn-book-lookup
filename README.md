@@ -15,10 +15,9 @@ improve performance. The interface is styled with custom CSS served via Vite.
 ```
 ## Prerequisites
 ```
-● PHP >= 8.
+● XAMPP: Provides PHP (>= 8.1), Apache, and MySQL.
 ● Composer
 ● Node.js >= 16 and npm
-● MySQL (or another database supported by Laravel)
 ● Git
 ```
 ## Installation
