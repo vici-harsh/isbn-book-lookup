@@ -89,12 +89,12 @@ npm run dev
 
 ● 1) The Great Gatsby: 0743273567 (ISBN-10) :
 
-![Alt text](screenshots/The Great Gatsby.png "The Great Gatsby")
+![The Great Gatsby](screenshots/The%20Great%20Gatsby.png)
 
 ● 2. Pride and Prejudice: 0141439513 (ISBN-10)
 
-![Alt text](screenshots/Pride and Prejudice.png "Pride and Prejudice")
+![Pride and Prejudice](screenshots/Pride%20and%20Prejudice.png)
 
 ● 3. Failure Case:
 
-![Alt text](screenshots/Invalid ISBN Number.png "Failure Case")
+![Invalid ISBN Number](screenshots/Invalid%20ISBN%20Number.png)
