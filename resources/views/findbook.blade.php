@@ -10,15 +10,23 @@
     <h1>ISBN Based Book Lookup</h1>
 
     <form method="GET" action="{{ route('book.show') }}">
-        <input type="text" name="isbn" placeholder="Enter ISBN (e.g., 9780141439518)" value="{{ $isbn ?? '' }}" required>
+        <input type="text" name="isbn" placeholder="Enter ISBN (e.g., 9780141439518)" value="{{ old('isbn', $isbn ?? '') }}" required>
         <button type="submit">Fetch Book Details</button>
     </form>
 
-    @if(isset($error))
+    
+    @if ($errors->any() || (isset($error) && !empty($error)))
         <div class="error">
-            {{ $error }}
+            @if ($errors->any())
+                @foreach ($errors->all() as $validationError)
+                    <p>{{ $validationError }}</p>
+                @endforeach
+            @else
+                <p>{{ $error }}</p>
+            @endif
         </div>
     @endif
+
 
     @if(isset($title))
         <div class="book-details">
@@ -36,7 +44,7 @@
 
             <div class="citation">
                 <p><strong>Data Source:</strong> This book information is provided by the Google Books API.</p>
-                <p>For more details, visit: <a href="https://developers.google.com/books" target="_blank">Google Books API</a></p>
+                <p>For more details, visit: <a href="{{ config('api.google_books.docs_url') }}" class="api-documentation-link" target="_blank">Google Books API</a></p>
             </div>
         </div>
     @endif

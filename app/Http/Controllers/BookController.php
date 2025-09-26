@@ -2,35 +2,28 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use App\Http\Requests\BookSearchRequest;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Cache;
 
+
 class BookController extends Controller
 {
-    public function show(Request $request)
+    public function show(BookSearchRequest $request)
     {
+        $validated = $request->validated();
         $isbn = $request->query('isbn');
 
         $data = ['isbn' => $isbn];
 
-        if (!$isbn) {
-            return view('book', $data);
-        }
-
-        $validator = Validator::make(['isbn' => $isbn], [
-            'isbn' => 'required|regex:/^\d{10,13}$/'
-        ]);
-
-        if ($validator->fails()) {
-            $data['error'] = 'Invalid ISBN format. Please enter a 10 or 13-digit ISBN.';
-            return view('findbook', $data);
-        }
-
         $bookData = Cache::remember("book_{$isbn}", 3600, function () use ($isbn) { 
             try {
-                $response = Http::timeout(10)->get("https://www.googleapis.com/books/v1/volumes?q=isbn:{$isbn}");
+                $baseUrl = config('api.google_books.base_url');
+                $queryParam = config('api.google_books.query_param');
+                $timeout = config('api.google_books.timeout');
+
+                $response = Http::timeout($timeout)->get("{$baseUrl}?{$queryParam}{$isbn}");
 
                 if ($response->failed()) {
                     return ['error' => 'Unable to fetch details google api. Please try again later.'];
